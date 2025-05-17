@@ -4,16 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LeetCode Leaderboard</title>
-  <!-- Ensure the paths to external resources are correct -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"> <!-- Ensure styles.css exists in the public directory -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Alert Container -->
   <div class="container position-fixed bottom-0 start-50 translate-middle-x mb-3" id="alert-container" style="z-index: 1055; max-width: 300px;"></div>
-  
-  <!-- Navbar -->
   <nav class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
@@ -25,15 +21,11 @@
       </a>
     </div>
   </nav>
-
-  <!-- Loading Icon -->
   <div id="loading-icon" class="d-none">
     <div class="spinner-border text-light" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-
-  <!-- Main Content -->
   <div class="container mt-5">
     <h2 class="text-center mb-4">Current Rankings</h2>
     <div class="table-responsive">
@@ -53,8 +45,6 @@
       </table>
     </div>
   </div>
-
-  <!-- Last Week Winners -->
   <div class="container mt-5">
     <h2 class="text-center mb-4">Last Week’s Winners</h2>
     <div class="table-responsive">
@@ -73,13 +63,16 @@
       </table>
     </div>
   </div>
-
-  <!-- Floating Action Button -->
   <button class="btn btn-primary rounded-circle floating-btn shadow" data-bs-toggle="modal" data-bs-target="#addUserModal">
     <i class="fas fa-plus"></i>
   </button>
-
-  <!-- Modal -->
+  <button id="troll-btn" class="btn btn-primary rounded-circle floating-btn shadow" style="left: 20px; right: auto; background: none; border: none; padding: 0;">
+    <img src="troll.png" alt="Troll" style="width: 60px; height: 60px; border-radius: 50%;">
+  </button>
+  <div id="troll-overlay" class="d-none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 9999; display: flex; justify-content: center; align-items: center;">
+    <img src="trollface.jpg" alt="Trollface" style="max-width: 100%; max-height: 100%;">
+    <audio id="troll-audio" src="careless_whispers.mp3" autoplay></audio>
+  </div>
   <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -99,9 +92,26 @@
       </div>
     </div>
   </div>
-
-  <!-- Ensure the script path is correct -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="app.js" type="module"></script> <!-- Ensure app.js exists in the public directory -->
+  <script src="app.js" type="module"></script>
+  <script>
+    document.getElementById('troll-btn').addEventListener('click', () => {
+      const overlay = document.getElementById('troll-overlay');
+      overlay.classList.remove('d-none');
+      const audio = document.getElementById('troll-audio');
+      audio.play();
+      const closeOverlay = () => {
+        overlay.classList.add('d-none');
+        audio.pause();
+        audio.currentTime = 0;
+      };
+      overlay.addEventListener('click', closeOverlay);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeOverlay();
+        }
+      }, { once: true });
+    });
+  </script>
 </body>
 </html>
