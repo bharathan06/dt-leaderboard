@@ -1,0 +1,26 @@
+done - make sure that if the user already exists then throw an error 
+done - fetch users endpoint in server.js 
+done - display all users in table
+done - display the leaderboard in the table with position (use ranked functions)
+
+- add column total solved which gets updated every time the page is refreshed :
+    - you dont need an additional solved probs 
+    - instead just find refreshed solved probs by using the most recent monday unix time
+        size(submissionCalendar[prev_mon] - submissionCalendar[last element])  
+        find the first problem solved right after prev monday unix time, store it as prev_mon_first 
+        size(prev_mon_first - most recent element will give us the number of problems solved this week.)
+        no need to store this value, but the key here is to store the prev_mon_first problem
+        this logic should execute everytime when the user loads the page
+
+
+    
+
+done - write backend logic for weekly reset on mondays 
+    cron that runs every week at a specific time, 
+
+later : 
+- fix the database integerity constraint error message problem in server.js addUser error handling part
+- add a rule book with a list of rules like reset timings, etc 
+- same rank issue fix 
+
+- deploy 
