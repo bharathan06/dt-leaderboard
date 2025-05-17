@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 
-export const db = new Database('users.db');
+export const db = new Database(process.env.DB_FILE);
 
 // Create Users Table
 db.exec(`
