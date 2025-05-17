@@ -26,7 +26,7 @@ document.getElementById('addUserForm').addEventListener('submit', async function
     }
 
     console.log(`Adding user: ${username}...`);
-    const endpoint = '/addUser';
+    const endpoint = '/api/addUser';
     const response = await fetch(endpoint, { 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
